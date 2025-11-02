@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+
+:root {
+  --primary-color: #ff9d00;
+  --primary-color-darker: #aa6a02;
+  --result-color: rgb(85, 204, 231);
+}
+
+* {
+  box-sizing: border-box;
+  outline: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: 'Open sans', sans-serif;
+  font-size: 1.3em;
+  line-height: 1.5em;
+}
+
+.container {
+  max-width: 25rem;
+  margin: 3rem auto;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 0.6rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 3.38rem 3.44rem, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+h1 {
+  text-align: center;
+  padding-bottom: 0.9rem;
+}
+
+.button-box {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.btn {
+  border-radius: 1.2rem;
+  border: 0;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 3.38rem 3.44rem, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  letter-spacing: 0.1rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+.btn:hover {
+  background-color: black;
+  color: white;
+}
+
+.btn:active {
+  transform: translatey(0.6rem);
+  transition: 100ms;
+}
+
+.clock {
+  font-size: 3.5rem;
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+
+.paused {
+  color: red;
+}
