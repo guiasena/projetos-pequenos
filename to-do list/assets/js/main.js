@@ -1,74 +1,65 @@
-const textoAtividade = document.querySelector('.textoAtividade');
-const botaoAdd = document.querySelector('.addAtividade');
-const lista = document.querySelector('.listaAtividade');
-
-function criaLi() {
-    const li = document.createElement('li');
-    return li;
+const newActivity = document.querySelector('.new-activity')
+const btnToDo = document.querySelector('.btn-add-activity');
+const toDo = document.querySelector('.activities');
+function createLi() {
+  const li = document.createElement('li');
+  return li;
 }
-
-textoAtividade.addEventListener('keypress', function (e) {
-    if (e.keyCode === 13) {
-        if (!textoAtividade.value) return;
-        criaAtividade(textoAtividade.value);
-    }
+newActivity.addEventListener('keypress', function(e) {
+  if (e.keyCode === 13) {
+    if (!newActivity.value) return;
+    createActivity(newActivity.value);
+  }
 })
-
-function limpaInput() {
-    textoAtividade.value = '';
-    textoAtividade.focus();
+function clearInput() {
+  newActivity.value = '';
+  newActivity.focus();
 }
-
-function botaoQueTira(li) {
-    li.innerText += ' ';
-    const clearButton = document.createElement('button');
-    clearButton.innerText = 'Clear';
-    clearButton.setAttribute('class', 'clear');
-    clearButton.setAttribute('tittle', 'Clear this activity');
-    li.appendChild(clearButton)
+function createClearButton(li) {
+  li.innerText += ' ';
+  const clearButton = document.createElement('button');
+  clearButton.innerText = 'Clear';
+  clearButton.setAttribute('class', 'clear');
+  clearButton.setAttribute('tittle', 'Clear this activity');
+  li.appendChild(clearButton)
 }
-
-function criaAtividade(inputText) {
-    const li = criaLi();
-    li.innerText = inputText;
-    lista.appendChild(li);
-    limpaInput();
-    botaoQueTira(li);
-    salvaAtividade();
+function createActivity(inputText) {
+  const li = createLi();
+  li.innerText = inputText;
+  toDo.appendChild(li);
+  clearInput();
+  createClearButton(li);
+  saveActivity();
 }
+btnToDo.addEventListener('click', function(e) {
+  if (!newActivity.value) return;
+  createActivity(newActivity.value);
 
-botaoAdd.addEventListener('click', function (e) {
-    if (!textoAtividade.value) return;
-    criaAtividade(textoAtividade.value);
 })
-
-document.addEventListener('click', function (e) {
-    const el = e.target;
-    if (el.classList.contains('clear')) {
-        el.parentElement.remove();
-        salvaAtividade();
-    }
+document.addEventListener('click', function(e) {
+  const el = e.target;
+  if (el.classList.contains('clear')) {
+    el.parentElement.remove();
+    saveActivity();
+  }
 })
+function saveActivity() {
+   const liActivities = toDo.querySelector('li');
+  const toDoList = [];
 
-function salvaAtividade() {
-    const liActivities = lista.querySelector('li');
-    const listaList = [];
-
-    for (let lista of listaList) {
-        const listaText = lista.innerText;
-        listaText = listaText.replace('clear', ' ').trim();
-        listaList.push(listaText);
-    }
-    const listaJSON = JSON.stringify(listaList);
-    localStorage.setItem('lista', listaJSON);
+  for (let toDo of toDoList) {
+    const toDoText = toDo.innerText;
+    toDoText = toDoText.replace('clear', ' ').trim();
+    toDoList.push(toDoText);
+  }
+  const toDoJSON = JSON.stringify(toDoList);
+  localStorage.setItem('toDo', toDoJSON);
 }
-
 function addSaveActivities() {
-    const lista = localStorage.getItem('lista');
-    const listaList = JSON.parse(lista);
-    for (let lista of listaList) {
-        criaAtividade(lista);
-    }
+  const toDo = localStorage.getItem('toDo');
+  const toDoList = JSON.parse(toDo);
+  for(let toDo of toDoList) {
+    createActivity(toDo);
+  }
 }
-
 addSaveActivities()
